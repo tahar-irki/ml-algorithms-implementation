@@ -26,9 +26,16 @@ This repository explores real-world datasets to bridge the gap between:
 │   │   └── knnLib.py             # scikit-learn benchmark version
 │   │
 │   ├── naive bayes/              # Naive Bayes classifiers
-│   │   ├── nBayesAlgo.py         # Custom Mixed Naive Bayes
-│   │   ├── nBayesDataFetcher.py  # Dataset loader
-│   │   └── nBayesLib.py          # Production pipeline version
+│   │   ├── data_loader_text.py   # Dataset loader
+│   │   ├── data_loader_tab.py    # Dataset loader
+│   │   ├── nBayes_tabular.py     # Custom Mixed Naive Bayes
+│   │   └── nBayes_text.py        # Production pipeline version
+│   │
+│   ├── svm/                      # Support Vector Machine
+│   │   ├── data_loader_text.py   # Dataset loader
+│   │   ├── data_loader_tab.py    # Dataset loader
+│   │   ├── svm_tabular.py        # tabular version
+│   │   └── svm_text.py           # text version
 │   │
 │   └── next algorithm/           # Future implementations
 │       └── dataFetcher.py
@@ -89,7 +96,7 @@ Predictions are based on real performance statistics.
 
 ### 🔹 Custom Mixed Naive Bayes
 
-A from-scratch implementation supporting mixed feature types:
+The implementation supporting mixed feature types:
 
 - Gaussian probability distributions → Continuous academic features  
 - Laplace-smoothed categorical probabilities → Demographic features  
@@ -175,9 +182,24 @@ pip install -r requirements.txt
 python src/knn/knnAlgo.py
 ```
 
-### Run Naive Bayes Production Pipeline
+### Run Naive Bayes students dropouts
 ```bash
 python "src/naive bayes/nBayesLib.py"
+```
+
+### Run Naive Bayes spam/ham
+```bash
+python "src/naive bayes/nbDataFbagOwords.py"
+```
+
+### Run svm tabular
+```bash
+python src/svm/svm_tabular.py
+```
+
+### Run svm text
+```bash
+python src/svm/svm_text.py
 ```
 
 ---
