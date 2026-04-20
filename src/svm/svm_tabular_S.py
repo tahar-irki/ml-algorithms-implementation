@@ -84,7 +84,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 # We evaluate three SVM kernels
 kernels = {
     "Linear": "linear",
-    "Polynomial": "poly",
     "RBF": "rbf"
 }
 
@@ -140,11 +139,11 @@ print(f"\nBest Model: {best_model_name}")
 # ============================================================
 # 9. CONFUSION MATRIX VISUALIZATION
 # ============================================================
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 class_names = ['Not depressed', 'Depressed']
 for ax, (name, res) in zip(axes, results.items()):
     disp = ConfusionMatrixDisplay(confusion_matrix=res["cm"],display_labels=class_names)
-    disp.plot(ax=ax)
+    disp.plot(ax=ax, cmap='YlGnBu', values_format='d')
     ax.set_title(name)
 
 plt.tight_layout()
