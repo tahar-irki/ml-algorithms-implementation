@@ -20,22 +20,20 @@ This repository explores real-world datasets to bridge the gap between:
 │ 
 │
 ├── src/                          # Algorithm implementations
+│   │
+│   ├── data_loader/              # data loader 
+│   │   └── data_loader.py        # data loader (for all the algorithms)
+│   │
 │   ├── knn/                      # K-Nearest Neighbors
 │   │   ├── knnAlgo.py            # Custom KNN (from scratch)
-│   │   ├── knnFetchData.py       # Data acquisition script
 │   │   └── knnLib.py             # scikit-learn benchmark version
 │   │
 │   ├── naive bayes/              # Naive Bayes classifiers
-│   │   ├── data_loader_text.py   # Dataset loader
-│   │   ├── data_loader_tab.py    # Dataset loader
 │   │   ├── nBayes_tabular.py     # Custom Mixed Naive Bayes
 │   │   └── nBayes_text.py        # Production pipeline version
 │   │
 │   ├── svm/                      # Support Vector Machine
-│   │   ├── data_loader_text.py   # Dataset loader
-│   │   ├── data_loader_tab.py    # Dataset loader
-│   │   ├── svm_tabular.py        # tabular version
-│   │   └── svm_text.py           # text version
+│   │   └── svm_tabular_S.py        # tabular version
 │   │
 │   └── next algorithm/           # Future implementations
 │       └── dataFetcher.py
@@ -139,6 +137,51 @@ The model predicts student dropout risk using:
 
 ---
 
+## 3️⃣ Support Vector Machines (SVM)
+
+### 🔹 Kernelized Classification Logic
+
+The implementation evaluates multiple geometric approaches to boundary separation:
+
+- Linear Kernel → Finds the optimal hyperplane for linearly separable data.
+- RBF (Radial Basis Function) Kernel → Projects features into higher-dimensional space to handle non-linear relationships.
+
+This implementation demonstrates understanding of:
+
+- Max-Margin Hyperplanes (maximizing the distance between classes).
+- Support Vectors (identifying critical data points that define the boundary).
+- Kernel Trick (computational efficiency in high-dimensional mapping).
+- Regularization & Soft Margins (balancing misclassification vs. boundary width).
+
+---
+
+### 🔹 Production Pipeline Version
+
+Built using scikit-learn to ensure a modular and reproducible workflow:
+
+- ColumnTransformer → Parallel processing of disparate data types.
+- StandardScaler → Crucial for SVM, as it is sensitive to the scale of input features (Distance-based).
+- OneHotEncoder → Transforms categorical identifiers into a sparse numerical format.
+- Pipeline → Chains preprocessing and SVC estimator to prevent data leakage during Cross-Validation.
+
+Capabilities include:
+
+- K-Fold Cross-Validation → Robust performance estimation on the training set.
+- Automated Preprocessing → Consistent transformation for both training and unseen test data.
+- Multi-Metric Evaluation → Comparison via Accuracy, F1-Score, and Confusion Matrices.
+
+---
+
+### 🎯 Domain: Educational Data
+
+The model predicts teen depression risk using high-dimensional behavioral data:
+
+- Daily Habits (Social media hours, sleep duration, screen time).
+- Academic & Physical Metrics (Performance scores, activity levels).
+- Psychological Indicators (Stress, anxiety, and addiction levels).
+
+---
+
 # 📊 Model Evaluation Strategy
 
 Each algorithm (custom and library-based) is evaluated using:
@@ -194,13 +237,9 @@ python "src/naive bayes/nbDataFbagOwords.py"
 
 ### Run svm tabular
 ```bash
-python src/svm/svm_tabular.py
+python src/svm/svm_tabular_S.py
 ```
 
-### Run svm text
-```bash
-python src/svm/svm_text.py
-```
 
 ---
 
